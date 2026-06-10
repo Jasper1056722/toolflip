@@ -1,0 +1,29 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import TextCaseConverter from '../../components/TextCaseConverter';
+---
+
+<ToolLayout
+  title="Text Case Converter"
+  description="Convert text between camelCase, snake_case, PascalCase, kebab-case, UPPERCASE, and more."
+  category="text"
+  targetKeyword="text case converter online camelCase snake_case"
+>
+  <TextCaseConverter client:load />
+
+  <section slot="faq" class="mt-10 border-t border-slate-200 pt-8 space-y-6">
+    <h2 class="text-lg font-semibold text-slate-800">Frequently Asked Questions</h2>
+    <div>
+      <h3 class="font-medium text-slate-700">What is camelCase?</h3>
+      <p class="text-sm text-slate-500 mt-1">camelCase joins words with no spaces, capitalising every word except the first. Common in JavaScript variable names.</p>
+    </div>
+    <div>
+      <h3 class="font-medium text-slate-700">What is snake_case?</h3>
+      <p class="text-sm text-slate-500 mt-1">snake_case replaces spaces with underscores and lowercases everything. Common in Python and database column names.</p>
+    </div>
+    <div>
+      <h3 class="font-medium text-slate-700">What is kebab-case?</h3>
+      <p class="text-sm text-slate-500 mt-1">kebab-case replaces spaces with hyphens. Used in URLs, CSS class names, and HTML attributes.</p>
+    </div>
+  </section>
+</ToolLayout>

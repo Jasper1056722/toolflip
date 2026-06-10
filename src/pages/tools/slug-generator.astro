@@ -1,0 +1,25 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import SlugGenerator from '../../components/SlugGenerator';
+---
+
+<ToolLayout
+  title="URL Slug Generator"
+  description="Convert any title or phrase into a clean, URL-safe slug. Handles accents, special characters, and spaces."
+  category="text"
+  targetKeyword="url slug generator online free"
+>
+  <SlugGenerator client:load />
+
+  <section slot="faq" class="mt-10 border-t border-slate-200 pt-8 space-y-6">
+    <h2 class="text-lg font-semibold text-slate-800">Frequently Asked Questions</h2>
+    <div>
+      <h3 class="font-medium text-slate-700">What is a URL slug?</h3>
+      <p class="text-sm text-slate-500 mt-1">A slug is the part of a URL that identifies a page in a human-readable way. For example, in <code>/blog/my-first-post</code>, the slug is <code>my-first-post</code>.</p>
+    </div>
+    <div>
+      <h3 class="font-medium text-slate-700">Are accented characters handled?</h3>
+      <p class="text-sm text-slate-500 mt-1">Yes. Characters like é, ü, and ñ are converted to their ASCII equivalents before slugifying.</p>
+    </div>
+  </section>
+</ToolLayout>

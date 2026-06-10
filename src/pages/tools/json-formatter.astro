@@ -1,0 +1,29 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import JsonFormatter from '../../components/JsonFormatter';
+---
+
+<ToolLayout
+  title="JSON Formatter & Validator"
+  description="Prettify, minify, and validate JSON instantly. Runs in your browser — nothing is uploaded."
+  category="data"
+  targetKeyword="json formatter validator online free"
+>
+  <JsonFormatter client:load />
+
+  <section slot="faq" class="mt-10 border-t border-slate-200 pt-8 space-y-6">
+    <h2 class="text-lg font-semibold text-slate-800">Frequently Asked Questions</h2>
+    <div>
+      <h3 class="font-medium text-slate-700">What does the formatter do?</h3>
+      <p class="text-sm text-slate-500 mt-1">It parses your JSON and re-outputs it with consistent 2-space indentation and line breaks, making it human-readable.</p>
+    </div>
+    <div>
+      <h3 class="font-medium text-slate-700">What is JSON minification?</h3>
+      <p class="text-sm text-slate-500 mt-1">Minification removes all whitespace to make JSON as compact as possible — useful for APIs and storage.</p>
+    </div>
+    <div>
+      <h3 class="font-medium text-slate-700">Is my JSON data safe?</h3>
+      <p class="text-sm text-slate-500 mt-1">Yes. Everything runs locally in your browser. No data is sent to any server.</p>
+    </div>
+  </section>
+</ToolLayout>

@@ -1,12 +1,16 @@
 ---
 ---
 
-<footer class="border-t border-slate-200 bg-white mt-16">
-  <div class="max-w-6xl mx-auto px-4 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500">
-    <p>© {new Date().getFullYear()} ToolFlip — All tools run in your browser. Nothing is uploaded.</p>
-    <nav class="flex gap-6">
-      <a href="/about" class="hover:text-indigo-600">About</a>
-      <a href="/privacy" class="hover:text-indigo-600">Privacy</a>
+<footer class="bg-slate-950 border-t border-slate-800 mt-16">
+  <div class="max-w-6xl mx-auto px-4 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-2 text-slate-500 text-sm">
+      <span class="w-1.5 h-1.5 rounded-full bg-green-500 inline-block"></span>
+      All tools run in your browser — nothing uploaded, nothing tracked.
+    </div>
+    <nav class="flex gap-6 text-sm text-slate-500">
+      <a href="/about" class="hover:text-slate-300 transition-colors">About</a>
+      <a href="/privacy" class="hover:text-slate-300 transition-colors">Privacy</a>
+      <span>© {new Date().getFullYear()} ToolFlip</span>
     </nav>
   </div>
 </footer>

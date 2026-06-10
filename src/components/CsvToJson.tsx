@@ -1,14 +1,34 @@
 import { useState, useCallback } from 'react';
 
+function parseCsvLine(line: string): string[] {
+  const cells: string[] = [];
+  let cur = '';
+  let inQuotes = false;
+  for (let i = 0; i < line.length; i++) {
+    const ch = line[i];
+    if (ch === '"') {
+      if (inQuotes && line[i + 1] === '"') { cur += '"'; i++; } // escaped quote
+      else { inQuotes = !inQuotes; }
+    } else if (ch === ',' && !inQuotes) {
+      cells.push(cur.trim());
+      cur = '';
+    } else {
+      cur += ch;
+    }
+  }
+  cells.push(cur.trim());
+  return cells;
+}
+
 function csvToJson(csv: string): { data: unknown[] | null; error: string | null } {
   const lines = csv.trim().split('\n');
   if (lines.length < 2) return { data: null, error: 'Need at least a header row and one data row.' };
 
-  const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g, ''));
+  const headers = parseCsvLine(lines[0]);
   const rows: unknown[] = [];
 
   for (let i = 1; i < lines.length; i++) {
-    const cells = lines[i].split(',').map(c => c.trim().replace(/^"|"$/g, ''));
+    const cells = parseCsvLine(lines[i]);
     if (cells.length !== headers.length) {
       return { data: null, error: `Row ${i + 1} has ${cells.length} columns, expected ${headers.length}.` };
     }

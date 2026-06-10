@@ -1,0 +1,25 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import LineSorter from '../../components/LineSorter';
+---
+
+<ToolLayout
+  title="Line Sorter & Deduplicator"
+  description="Sort lines alphabetically, reverse, remove duplicates, trim whitespace, or shuffle. One click per operation."
+  category="text"
+  targetKeyword="sort lines alphabetically online remove duplicates"
+>
+  <LineSorter client:load />
+
+  <section slot="faq" class="mt-10 border-t border-slate-200 pt-8 space-y-6">
+    <h2 class="text-lg font-semibold text-slate-800">Frequently Asked Questions</h2>
+    <div>
+      <h3 class="font-medium text-slate-700">Can I chain multiple operations?</h3>
+      <p class="text-sm text-slate-500 mt-1">Yes — each button applies to the current output. Remove duplicates first, then sort, for example.</p>
+    </div>
+    <div>
+      <h3 class="font-medium text-slate-700">Is there a line limit?</h3>
+      <p class="text-sm text-slate-500 mt-1">No server limit since everything runs in your browser. Large lists (tens of thousands of lines) work fine.</p>
+    </div>
+  </section>
+</ToolLayout>

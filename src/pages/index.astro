@@ -5,51 +5,99 @@ import AdSlot from '../components/AdSlot.astro';
 
 const tools = {
   data: [
-    { title: 'CSV to JSON', description: 'Convert CSV data to JSON instantly. Paste and go.', href: '/tools/csv-to-json', icon: '⇄' },
-    { title: 'JSON Formatter', description: 'Prettify and validate JSON with syntax highlighting.', href: '/tools/json-formatter', icon: '{ }' },
-    { title: 'JSON to CSV', description: 'Flatten JSON arrays into CSV format.', href: '/tools/json-to-csv', icon: '⇄' },
-    { title: 'YAML to JSON', description: 'Convert YAML config files to JSON.', href: '/tools/yaml-to-json', icon: '⇄' },
+    { title: 'CSV to JSON', description: 'Convert CSV data to JSON instantly. Paste and go.', href: '/tools/csv-to-json', icon: '⇄', color: 'bg-blue-500/10 text-blue-500', accent: 'from-blue-500 to-blue-400' },
+    { title: 'JSON Formatter', description: 'Prettify and validate JSON with syntax highlighting.', href: '/tools/json-formatter', icon: '{ }', color: 'bg-amber-500/10 text-amber-500', accent: 'from-amber-500 to-amber-400' },
+    { title: 'Base64 Encoder', description: 'Encode and decode Base64 — two-way, live.', href: '/tools/base64', icon: '64', color: 'bg-emerald-500/10 text-emerald-500', accent: 'from-emerald-500 to-emerald-400' },
+    { title: 'YAML to JSON', description: 'Convert YAML config files to JSON.', href: '/tools/yaml-to-json', icon: '⇄', color: 'bg-purple-500/10 text-purple-500', accent: 'from-purple-500 to-purple-400' },
   ],
   text: [
-    { title: 'Character Counter', description: 'Count characters per platform — Twitter, LinkedIn, meta tags.', href: '/tools/character-counter', icon: '#' },
-    { title: 'Text Case Converter', description: 'camelCase, snake_case, UPPER, Title Case and more.', href: '/tools/text-case', icon: 'Aa' },
-    { title: 'Slug Generator', description: 'Turn any text into a URL-safe slug.', href: '/tools/slug-generator', icon: '—' },
-    { title: 'Line Sorter', description: 'Sort, deduplicate, or reverse lines of text.', href: '/tools/line-sorter', icon: '↕' },
+    { title: 'Character Counter', description: 'Count characters per platform — Twitter, LinkedIn, meta tags.', href: '/tools/character-counter', icon: '#', color: 'bg-pink-500/10 text-pink-500', accent: 'from-pink-500 to-pink-400' },
+    { title: 'Text Case Converter', description: 'camelCase, snake_case, UPPER, Title Case and more.', href: '/tools/text-case', icon: 'Aa', color: 'bg-indigo-500/10 text-indigo-500', accent: 'from-indigo-500 to-indigo-400' },
+    { title: 'Slug Generator', description: 'Turn any title into a clean URL-safe slug.', href: '/tools/slug-generator', icon: '/', color: 'bg-teal-500/10 text-teal-500', accent: 'from-teal-500 to-teal-400' },
+    { title: 'Line Sorter', description: 'Sort, deduplicate, or reverse lines of text.', href: '/tools/line-sorter', icon: '↕', color: 'bg-orange-500/10 text-orange-500', accent: 'from-orange-500 to-orange-400' },
   ],
   css: [
-    { title: 'CSS Gradient Generator', description: 'Build linear and radial gradients visually.', href: '/tools/css-gradient', icon: '▓' },
-    { title: 'Box Shadow Builder', description: 'Create and preview CSS box-shadow values.', href: '/tools/box-shadow', icon: '◻' },
-    { title: 'Color Contrast Checker', description: 'Check WCAG AA/AAA compliance for text colors.', href: '/tools/color-contrast', icon: '◑' },
+    { title: 'CSS Gradient Generator', description: 'Build linear and radial gradients visually.', href: '/tools/css-gradient', icon: '▓', color: 'bg-violet-500/10 text-violet-500', accent: 'from-violet-500 to-violet-400' },
+    { title: 'Box Shadow Builder', description: 'Create and preview CSS box-shadow values.', href: '/tools/box-shadow', icon: '◻', color: 'bg-sky-500/10 text-sky-500', accent: 'from-sky-500 to-sky-400' },
+    { title: 'Color Contrast Checker', description: 'Check WCAG AA/AAA compliance for text colors.', href: '/tools/color-contrast', icon: '◑', color: 'bg-rose-500/10 text-rose-500', accent: 'from-rose-500 to-rose-400' },
   ],
   svg: [
-    { title: 'SVG Optimizer', description: 'Minify SVG files. Removes metadata and unused elements.', href: '/tools/svg-optimizer', icon: '◈' },
-    { title: 'SVG to PNG', description: 'Export SVG to PNG at any resolution, in browser.', href: '/tools/svg-to-png', icon: '↓' },
-    { title: 'Favicon Generator', description: 'Create ICO and PNG favicons from any SVG or image.', href: '/tools/favicon-generator', icon: '⬡' },
+    { title: 'SVG Optimizer', description: 'Minify SVG files. Removes metadata and unused elements.', href: '/tools/svg-optimizer', icon: '◈', color: 'bg-cyan-500/10 text-cyan-500', accent: 'from-cyan-500 to-cyan-400' },
+    { title: 'SVG to PNG', description: 'Export SVG to PNG at any resolution, in browser.', href: '/tools/svg-to-png', icon: '↓', color: 'bg-lime-500/10 text-lime-500', accent: 'from-lime-500 to-lime-400' },
+    { title: 'Favicon Generator', description: 'Create ICO and PNG favicons from any SVG or image.', href: '/tools/favicon-generator', icon: '⬡', color: 'bg-fuchsia-500/10 text-fuchsia-500', accent: 'from-fuchsia-500 to-fuchsia-400' },
   ],
 };
+
+const stats = [
+  { value: '7', label: 'tools' },
+  { value: '0', label: 'uploads' },
+  { value: '100%', label: 'client-side' },
+];
 ---
 
-<Layout title="Free Online Browser Tools">
+<Layout title="Free Browser-Based Dev Tools">
+
   <!-- Hero -->
-  <section class="bg-white border-b border-slate-200">
-    <div class="max-w-6xl mx-auto px-4 py-14 text-center">
-      <h1 class="text-4xl font-bold text-slate-900 mb-4">
-        Tools that run in your browser.<br />
-        <span class="text-indigo-600">No uploads. No servers. No nonsense.</span>
+  <section class="bg-slate-950 dot-grid relative overflow-hidden">
+    <!-- gradient fade bottom -->
+    <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-950 to-transparent"></div>
+
+    <div class="relative max-w-6xl mx-auto px-4 py-20 text-center">
+
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 bg-slate-800 border border-slate-700 rounded-full px-3 py-1 text-xs text-slate-400 mb-8">
+        <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>
+        100% client-side · nothing uploaded · nothing tracked
+      </div>
+
+      <!-- Heading -->
+      <h1 class="text-4xl sm:text-5xl font-bold text-white mb-4 leading-tight">
+        Tools that run in<br />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">
+          your browser.
+        </span>
       </h1>
-      <p class="text-lg text-slate-500 max-w-xl mx-auto">
-        Free developer and designer utilities. Everything processes locally — your data never leaves your device.
+      <p class="text-slate-400 text-lg max-w-lg mx-auto mb-10">
+        Free utilities for developers and designers. No account. No server. Your data never leaves your device.
       </p>
+
+      <!-- Terminal snippet -->
+      <div class="inline-block text-left bg-slate-900 border border-slate-700 rounded-xl px-5 py-4 font-mono text-sm shadow-xl mb-10">
+        <div class="flex items-center gap-1.5 mb-3">
+          <span class="w-3 h-3 rounded-full bg-red-500/70"></span>
+          <span class="w-3 h-3 rounded-full bg-yellow-500/70"></span>
+          <span class="w-3 h-3 rounded-full bg-green-500/70"></span>
+        </div>
+        <div class="space-y-1">
+          <p class="text-slate-500"><span class="text-indigo-400">$</span> paste csv <span class="text-slate-600">|</span> toolflip convert json</p>
+          <p class="text-green-400">✓ converted 3 rows → JSON in 0ms</p>
+          <p class="text-slate-500"><span class="text-indigo-400">$</span> <span class="animate-pulse">_</span></p>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="flex items-center justify-center gap-8">
+        {stats.map(s => (
+          <div class="text-center">
+            <div class="text-2xl font-bold text-white">{s.value}</div>
+            <div class="text-xs text-slate-500">{s.label}</div>
+          </div>
+        ))}
+      </div>
+
     </div>
   </section>
 
-  <div class="max-w-6xl mx-auto px-4 py-12 space-y-14">
+  <!-- Tools grid -->
+  <div class="max-w-6xl mx-auto px-4 py-12 space-y-12">
 
     <!-- Data Tools -->
     <section id="data">
-      <h2 class="text-lg font-semibold text-slate-700 mb-4 flex items-center gap-2">
-        <span class="text-indigo-500">⇄</span> Data Format Tools
-      </h2>
+      <div class="flex items-center gap-3 mb-5">
+        <span class="text-xs font-mono font-semibold text-indigo-500 bg-indigo-500/10 px-2 py-1 rounded">DATA</span>
+        <h2 class="text-base font-semibold text-slate-800">Format Converters</h2>
+        <div class="flex-1 h-px bg-slate-200"></div>
+      </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {tools.data.map(t => <ToolCard {...t} />)}
       </div>
@@ -59,9 +107,11 @@ const tools = {
 
     <!-- Text Tools -->
     <section id="text">
-      <h2 class="text-lg font-semibold text-slate-700 mb-4 flex items-center gap-2">
-        <span class="text-indigo-500">T</span> Text Tools
-      </h2>
+      <div class="flex items-center gap-3 mb-5">
+        <span class="text-xs font-mono font-semibold text-pink-500 bg-pink-500/10 px-2 py-1 rounded">TEXT</span>
+        <h2 class="text-base font-semibold text-slate-800">Text Utilities</h2>
+        <div class="flex-1 h-px bg-slate-200"></div>
+      </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {tools.text.map(t => <ToolCard {...t} />)}
       </div>
@@ -69,9 +119,11 @@ const tools = {
 
     <!-- CSS Tools -->
     <section id="css">
-      <h2 class="text-lg font-semibold text-slate-700 mb-4 flex items-center gap-2">
-        <span class="text-indigo-500">#</span> CSS Tools
-      </h2>
+      <div class="flex items-center gap-3 mb-5">
+        <span class="text-xs font-mono font-semibold text-violet-500 bg-violet-500/10 px-2 py-1 rounded">CSS</span>
+        <h2 class="text-base font-semibold text-slate-800">CSS Generators</h2>
+        <div class="flex-1 h-px bg-slate-200"></div>
+      </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {tools.css.map(t => <ToolCard {...t} />)}
       </div>
@@ -81,9 +133,11 @@ const tools = {
 
     <!-- SVG Tools -->
     <section id="svg">
-      <h2 class="text-lg font-semibold text-slate-700 mb-4 flex items-center gap-2">
-        <span class="text-indigo-500">◈</span> SVG Tools
-      </h2>
+      <div class="flex items-center gap-3 mb-5">
+        <span class="text-xs font-mono font-semibold text-cyan-500 bg-cyan-500/10 px-2 py-1 rounded">SVG</span>
+        <h2 class="text-base font-semibold text-slate-800">SVG Tools</h2>
+        <div class="flex-1 h-px bg-slate-200"></div>
+      </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {tools.svg.map(t => <ToolCard {...t} />)}
       </div>
