@@ -1,0 +1,32 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import CsvToJson from '../../components/CsvToJson';
+---
+
+<ToolLayout
+  title="CSV to JSON Converter"
+  description="Paste CSV data and get clean JSON instantly. Free, online, no file upload — runs entirely in your browser."
+  category="data"
+  targetKeyword="csv to json converter online free"
+>
+  <CsvToJson client:load />
+
+  <section slot="faq" class="mt-10 border-t border-slate-200 pt-8 space-y-6">
+    <h2 class="text-lg font-semibold text-slate-800">Frequently Asked Questions</h2>
+
+    <div>
+      <h3 class="font-medium text-slate-700">Is my data uploaded anywhere?</h3>
+      <p class="text-sm text-slate-500 mt-1">No. The conversion runs entirely in your browser using JavaScript. Your CSV data never leaves your device.</p>
+    </div>
+
+    <div>
+      <h3 class="font-medium text-slate-700">What CSV format is supported?</h3>
+      <p class="text-sm text-slate-500 mt-1">Standard comma-separated values with a header row. Quoted fields are supported. The first row is used as JSON keys.</p>
+    </div>
+
+    <div>
+      <h3 class="font-medium text-slate-700">Can I convert large CSV files?</h3>
+      <p class="text-sm text-slate-500 mt-1">Yes — since processing is local, there's no server file size limit. Performance depends on your browser, but files up to tens of MB convert fine.</p>
+    </div>
+  </section>
+</ToolLayout>

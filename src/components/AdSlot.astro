@@ -1,0 +1,27 @@
+---
+interface Props {
+  size: 'leaderboard' | 'rectangle';
+}
+
+const { size } = Astro.props;
+
+const dimensions = {
+  leaderboard: { w: '728px', h: '90px', label: '728×90' },
+  rectangle:   { w: '300px', h: '250px', label: '300×250' },
+};
+
+const d = dimensions[size];
+---
+
+<!--
+  Ad slot — swap inner content for real ad network code when ready.
+  Carbon Ads: https://www.carbonads.net
+  Google AdSense: replace with <ins class="adsbygoogle" ...>
+-->
+<div
+  class="ad-slot flex items-center justify-center bg-slate-100 border border-dashed border-slate-300 rounded text-slate-400 text-xs"
+  style={`width:100%; max-width:${d.w}; height:${d.h};`}
+  aria-label="Advertisement"
+>
+  <span>Ad · {d.label}</span>
+</div>

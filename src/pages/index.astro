@@ -1,0 +1,93 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ToolCard from '../components/ToolCard.astro';
+import AdSlot from '../components/AdSlot.astro';
+
+const tools = {
+  data: [
+    { title: 'CSV to JSON', description: 'Convert CSV data to JSON instantly. Paste and go.', href: '/tools/csv-to-json', icon: '⇄' },
+    { title: 'JSON Formatter', description: 'Prettify and validate JSON with syntax highlighting.', href: '/tools/json-formatter', icon: '{ }' },
+    { title: 'JSON to CSV', description: 'Flatten JSON arrays into CSV format.', href: '/tools/json-to-csv', icon: '⇄' },
+    { title: 'YAML to JSON', description: 'Convert YAML config files to JSON.', href: '/tools/yaml-to-json', icon: '⇄' },
+  ],
+  text: [
+    { title: 'Character Counter', description: 'Count characters per platform — Twitter, LinkedIn, meta tags.', href: '/tools/character-counter', icon: '#' },
+    { title: 'Text Case Converter', description: 'camelCase, snake_case, UPPER, Title Case and more.', href: '/tools/text-case', icon: 'Aa' },
+    { title: 'Slug Generator', description: 'Turn any text into a URL-safe slug.', href: '/tools/slug-generator', icon: '—' },
+    { title: 'Line Sorter', description: 'Sort, deduplicate, or reverse lines of text.', href: '/tools/line-sorter', icon: '↕' },
+  ],
+  css: [
+    { title: 'CSS Gradient Generator', description: 'Build linear and radial gradients visually.', href: '/tools/css-gradient', icon: '▓' },
+    { title: 'Box Shadow Builder', description: 'Create and preview CSS box-shadow values.', href: '/tools/box-shadow', icon: '◻' },
+    { title: 'Color Contrast Checker', description: 'Check WCAG AA/AAA compliance for text colors.', href: '/tools/color-contrast', icon: '◑' },
+  ],
+  svg: [
+    { title: 'SVG Optimizer', description: 'Minify SVG files. Removes metadata and unused elements.', href: '/tools/svg-optimizer', icon: '◈' },
+    { title: 'SVG to PNG', description: 'Export SVG to PNG at any resolution, in browser.', href: '/tools/svg-to-png', icon: '↓' },
+    { title: 'Favicon Generator', description: 'Create ICO and PNG favicons from any SVG or image.', href: '/tools/favicon-generator', icon: '⬡' },
+  ],
+};
+---
+
+<Layout title="Free Online Browser Tools">
+  <!-- Hero -->
+  <section class="bg-white border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 py-14 text-center">
+      <h1 class="text-4xl font-bold text-slate-900 mb-4">
+        Tools that run in your browser.<br />
+        <span class="text-indigo-600">No uploads. No servers. No nonsense.</span>
+      </h1>
+      <p class="text-lg text-slate-500 max-w-xl mx-auto">
+        Free developer and designer utilities. Everything processes locally — your data never leaves your device.
+      </p>
+    </div>
+  </section>
+
+  <div class="max-w-6xl mx-auto px-4 py-12 space-y-14">
+
+    <!-- Data Tools -->
+    <section id="data">
+      <h2 class="text-lg font-semibold text-slate-700 mb-4 flex items-center gap-2">
+        <span class="text-indigo-500">⇄</span> Data Format Tools
+      </h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {tools.data.map(t => <ToolCard {...t} />)}
+      </div>
+    </section>
+
+    <AdSlot size="leaderboard" />
+
+    <!-- Text Tools -->
+    <section id="text">
+      <h2 class="text-lg font-semibold text-slate-700 mb-4 flex items-center gap-2">
+        <span class="text-indigo-500">T</span> Text Tools
+      </h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {tools.text.map(t => <ToolCard {...t} />)}
+      </div>
+    </section>
+
+    <!-- CSS Tools -->
+    <section id="css">
+      <h2 class="text-lg font-semibold text-slate-700 mb-4 flex items-center gap-2">
+        <span class="text-indigo-500">#</span> CSS Tools
+      </h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {tools.css.map(t => <ToolCard {...t} />)}
+      </div>
+    </section>
+
+    <AdSlot size="leaderboard" />
+
+    <!-- SVG Tools -->
+    <section id="svg">
+      <h2 class="text-lg font-semibold text-slate-700 mb-4 flex items-center gap-2">
+        <span class="text-indigo-500">◈</span> SVG Tools
+      </h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {tools.svg.map(t => <ToolCard {...t} />)}
+      </div>
+    </section>
+
+  </div>
+</Layout>

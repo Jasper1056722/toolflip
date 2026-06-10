@@ -1,0 +1,60 @@
+---
+import Layout from './Layout.astro';
+import AdSlot from '../components/AdSlot.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  category: string;
+  /** Exact keyword phrase this page targets e.g. "csv to json converter online free" */
+  targetKeyword?: string;
+}
+
+const { title, description, category, targetKeyword } = Astro.props;
+
+// Use targetKeyword as description prefix for extra keyword density if provided
+const seoDescription = targetKeyword
+  ? `${title} — ${description}`
+  : description;
+---
+
+<Layout title={title} description={seoDescription}>
+  <div class="max-w-6xl mx-auto px-4 py-8">
+
+    <!-- Breadcrumb (also helps Google understand site structure) -->
+    <nav class="text-sm text-slate-500 mb-6" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-indigo-600">Home</a>
+      <span class="mx-2">/</span>
+      <span class="capitalize">{category}</span>
+      <span class="mx-2">/</span>
+      <span class="text-slate-700">{title}</span>
+    </nav>
+
+    <div class="flex gap-8">
+      <!-- Main tool area -->
+      <div class="flex-1 min-w-0">
+        <h1 class="text-2xl font-bold text-slate-900 mb-2">{title}</h1>
+        <p class="text-slate-500 mb-6">{description}</p>
+
+        <slot />
+
+        <div class="my-8">
+          <AdSlot size="leaderboard" />
+        </div>
+
+        <!-- FAQ section — boosts SEO with long-tail keyword coverage -->
+        <section class="mt-8 prose prose-slate max-w-none">
+          <slot name="faq" />
+        </section>
+      </div>
+
+      <!-- Sidebar ad (desktop only) -->
+      <aside class="hidden lg:block w-[300px] flex-shrink-0 pt-16">
+        <div class="sticky top-6">
+          <AdSlot size="rectangle" />
+        </div>
+      </aside>
+    </div>
+
+  </div>
+</Layout>
