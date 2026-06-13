@@ -1,0 +1,29 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import SvgOptimizer from '../../components/SvgOptimizer';
+
+const faqs = [
+  {
+    question: 'What does the optimizer remove?',
+    answer: 'XML declarations, comments, metadata, titles, descriptions, editor-specific attributes (Inkscape, Sketch, Figma), and unnecessary whitespace.',
+  },
+  {
+    question: 'Will my SVG still look the same?',
+    answer: 'Yes. Only non-visual data is removed — path data, shapes, and styles are never modified, so rendering is pixel-identical.',
+  },
+  {
+    question: 'Is my SVG uploaded anywhere?',
+    answer: 'No. Optimization runs entirely in your browser. Files never leave your device.',
+  },
+];
+---
+
+<ToolLayout
+  title="SVG Optimizer"
+  description="Minify SVG files in your browser. Strips metadata, comments, and editor junk while keeping rendering pixel-identical."
+  category="svg"
+  targetKeyword="svg optimizer minify online free"
+  faqs={faqs}
+>
+  <SvgOptimizer client:load />
+</ToolLayout>

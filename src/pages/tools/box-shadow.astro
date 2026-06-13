@@ -1,0 +1,29 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import BoxShadow from '../../components/BoxShadow';
+
+const faqs = [
+  {
+    question: 'What do the box-shadow values mean?',
+    answer: 'In order: horizontal offset, vertical offset, blur radius, spread radius, and color. Negative spread shrinks the shadow; inset draws it inside the element.',
+  },
+  {
+    question: 'How do I make a soft, modern shadow?',
+    answer: 'Use a small vertical offset, a large blur, a slightly negative spread, and low opacity — for example 0px 8px 24px -4px at 25% opacity.',
+  },
+  {
+    question: 'Can I layer multiple shadows?',
+    answer: 'Yes. CSS accepts comma-separated shadow lists. Generate each layer here and combine them in one box-shadow declaration.',
+  },
+];
+---
+
+<ToolLayout
+  title="CSS Box Shadow Generator"
+  description="Create and preview CSS box-shadow values with live sliders for offset, blur, spread, color, and opacity."
+  category="css"
+  targetKeyword="css box shadow generator online"
+  faqs={faqs}
+>
+  <BoxShadow client:load />
+</ToolLayout>

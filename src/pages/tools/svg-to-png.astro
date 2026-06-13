@@ -1,0 +1,29 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import SvgToPng from '../../components/SvgToPng';
+
+const faqs = [
+  {
+    question: 'How does the conversion work?',
+    answer: 'Your SVG is rendered onto an HTML canvas in your browser and exported as PNG. Nothing is uploaded to any server.',
+  },
+  {
+    question: 'What resolution will the PNG be?',
+    answer: 'The SVG’s intrinsic size multiplied by the scale you choose (1× to 8×). A 100×100 SVG at 4× becomes a 400×400 PNG.',
+  },
+  {
+    question: 'Why does my SVG render incorrectly?',
+    answer: 'External references (linked images, external CSS, or fonts) cannot be loaded during canvas rendering for security reasons. Inline all styles and convert text to paths for best results.',
+  },
+];
+---
+
+<ToolLayout
+  title="SVG to PNG Converter"
+  description="Convert SVG to PNG at 1× to 8× resolution, right in your browser. No upload, no server, instant download."
+  category="svg"
+  targetKeyword="svg to png converter online free high resolution"
+  faqs={faqs}
+>
+  <SvgToPng client:load />
+</ToolLayout>

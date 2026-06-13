@@ -1,0 +1,29 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import FaviconGenerator from '../../components/FaviconGenerator';
+
+const faqs = [
+  {
+    question: 'Which favicon sizes do I need?',
+    answer: 'favicon.ico (16, 32, 48) for browsers, 180×180 for Apple touch icons, and 192×192 plus 512×512 for Android and PWA manifests. This tool generates all of them.',
+  },
+  {
+    question: 'What image should I start from?',
+    answer: 'A square SVG or a PNG of at least 512×512 gives the sharpest results. Non-square images are stretched to fit.',
+  },
+  {
+    question: 'Are my images uploaded?',
+    answer: 'No. All resizing and ICO packaging happens locally in your browser.',
+  },
+];
+---
+
+<ToolLayout
+  title="Favicon Generator"
+  description="Create favicon.ico and all PNG favicon sizes (16 to 512px) from any image — SVG, PNG, or JPG. Free and in-browser."
+  category="svg"
+  targetKeyword="favicon generator online ico png free"
+  faqs={faqs}
+>
+  <FaviconGenerator client:load />
+</ToolLayout>

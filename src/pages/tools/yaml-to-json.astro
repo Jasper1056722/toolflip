@@ -1,0 +1,29 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import YamlToJson from '../../components/YamlToJson';
+
+const faqs = [
+  {
+    question: 'Is my YAML data uploaded anywhere?',
+    answer: 'No. Parsing happens entirely in your browser. Your config files never leave your device.',
+  },
+  {
+    question: 'Which YAML features are supported?',
+    answer: 'Full YAML 1.2: nested maps, lists, anchors and aliases, multi-line strings, and type coercion for numbers, booleans, and null.',
+  },
+  {
+    question: 'Why convert YAML to JSON?',
+    answer: 'Many APIs and tools only accept JSON. Converting lets you reuse Kubernetes manifests, CI configs, or docker-compose files in JSON-only contexts.',
+  },
+];
+---
+
+<ToolLayout
+  title="YAML to JSON Converter"
+  description="Paste YAML and get clean JSON instantly. Supports nested structures, lists, and anchors — runs entirely in your browser."
+  category="data"
+  targetKeyword="yaml to json converter online free"
+  faqs={faqs}
+>
+  <YamlToJson client:load />
+</ToolLayout>

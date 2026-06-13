@@ -1,0 +1,29 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import ColorContrast from '../../components/ColorContrast';
+
+const faqs = [
+  {
+    question: 'What contrast ratio does WCAG require?',
+    answer: 'WCAG AA requires at least 4.5:1 for normal text and 3:1 for large text. AAA raises this to 7:1 and 4.5:1 respectively.',
+  },
+  {
+    question: 'What counts as large text?',
+    answer: 'Text at 18pt (24px) or larger, or bold text at 14pt (about 18.5px) or larger.',
+  },
+  {
+    question: 'How is the contrast ratio calculated?',
+    answer: 'It compares the relative luminance of the two colors using the WCAG formula: (L1 + 0.05) / (L2 + 0.05), where L1 is the lighter color.',
+  },
+];
+---
+
+<ToolLayout
+  title="Color Contrast Checker"
+  description="Check WCAG AA and AAA contrast compliance for any text and background color combination, with live preview."
+  category="css"
+  targetKeyword="color contrast checker wcag aa aaa online"
+  faqs={faqs}
+>
+  <ColorContrast client:load />
+</ToolLayout>
