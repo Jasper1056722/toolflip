@@ -1,6 +1,17 @@
 ---
 import ToolLayout from '../../layouts/ToolLayout.astro';
 import CharacterCounter from '../../components/CharacterCounter';
+
+const faqs = [
+  {
+    question: "What is Twitter's character limit?",
+    answer: '280 characters for standard tweets. URLs always count as 23 characters regardless of length.',
+  },
+  {
+    question: 'What is the ideal meta description length?',
+    answer: 'Google truncates meta descriptions at around 160 characters. Aim for 120–155 for best display in search results.',
+  },
+];
 ---
 
 <ToolLayout
@@ -8,18 +19,7 @@ import CharacterCounter from '../../components/CharacterCounter';
   description="Count characters, words, and lines. See live limits for Twitter, LinkedIn, meta descriptions, and more."
   category="text"
   targetKeyword="character counter online words lines twitter limit"
+  faqs={faqs}
 >
   <CharacterCounter client:load />
-
-  <section slot="faq" class="mt-10 border-t border-slate-200 pt-8 space-y-6">
-    <h2 class="text-lg font-semibold text-slate-800">Frequently Asked Questions</h2>
-    <div>
-      <h3 class="font-medium text-slate-700">What is Twitter's character limit?</h3>
-      <p class="text-sm text-slate-500 mt-1">280 characters for standard tweets. URLs always count as 23 characters regardless of length.</p>
-    </div>
-    <div>
-      <h3 class="font-medium text-slate-700">What is the ideal meta description length?</h3>
-      <p class="text-sm text-slate-500 mt-1">Google truncates meta descriptions at around 160 characters. Aim for 120–155 for best display in search results.</p>
-    </div>
-  </section>
 </ToolLayout>

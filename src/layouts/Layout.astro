@@ -18,6 +18,15 @@ const {
 const site = 'https://toolflip.dev';
 const canonical = `${site}${canonicalPath}`;
 const fullTitle = `${title} — ToolFlip`;
+const ogImage = `${site}/og.png`;
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'ToolFlip',
+  url: site,
+  description: 'Free browser-based tools for developers and designers. No uploads, no servers.',
+};
 ---
 
 <html lang="en">
@@ -37,14 +46,22 @@ const fullTitle = `${title} — ToolFlip`;
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:site_name" content="ToolFlip" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
     <!-- Twitter card -->
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
 
     <!-- Indexing -->
     <meta name="robots" content="index, follow" />
+
+    <!-- Structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    <slot name="head" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />

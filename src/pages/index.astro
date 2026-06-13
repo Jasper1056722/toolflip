@@ -2,34 +2,17 @@
 import Layout from '../layouts/Layout.astro';
 import ToolCard from '../components/ToolCard.astro';
 import AdSlot from '../components/AdSlot.astro';
+import { byCategory, liveTools } from '../data/tools';
 
 const tools = {
-  data: [
-    { title: 'CSV to JSON', description: 'Convert CSV data to JSON instantly. Paste and go.', href: '/tools/csv-to-json', icon: '⇄', color: 'bg-blue-500/10 text-blue-500', accent: 'from-blue-500 to-blue-400' },
-    { title: 'JSON Formatter', description: 'Prettify and validate JSON with syntax highlighting.', href: '/tools/json-formatter', icon: '{ }', color: 'bg-amber-500/10 text-amber-500', accent: 'from-amber-500 to-amber-400' },
-    { title: 'Base64 Encoder', description: 'Encode and decode Base64 — two-way, live.', href: '/tools/base64', icon: '64', color: 'bg-emerald-500/10 text-emerald-500', accent: 'from-emerald-500 to-emerald-400' },
-    { title: 'YAML to JSON', description: 'Convert YAML config files to JSON.', href: '/tools/yaml-to-json', icon: '⇄', color: 'bg-purple-500/10 text-purple-500', accent: 'from-purple-500 to-purple-400' },
-  ],
-  text: [
-    { title: 'Character Counter', description: 'Count characters per platform — Twitter, LinkedIn, meta tags.', href: '/tools/character-counter', icon: '#', color: 'bg-pink-500/10 text-pink-500', accent: 'from-pink-500 to-pink-400' },
-    { title: 'Text Case Converter', description: 'camelCase, snake_case, UPPER, Title Case and more.', href: '/tools/text-case', icon: 'Aa', color: 'bg-indigo-500/10 text-indigo-500', accent: 'from-indigo-500 to-indigo-400' },
-    { title: 'Slug Generator', description: 'Turn any title into a clean URL-safe slug.', href: '/tools/slug-generator', icon: '/', color: 'bg-teal-500/10 text-teal-500', accent: 'from-teal-500 to-teal-400' },
-    { title: 'Line Sorter', description: 'Sort, deduplicate, or reverse lines of text.', href: '/tools/line-sorter', icon: '↕', color: 'bg-orange-500/10 text-orange-500', accent: 'from-orange-500 to-orange-400' },
-  ],
-  css: [
-    { title: 'CSS Gradient Generator', description: 'Build linear and radial gradients visually.', href: '/tools/css-gradient', icon: '▓', color: 'bg-violet-500/10 text-violet-500', accent: 'from-violet-500 to-violet-400' },
-    { title: 'Box Shadow Builder', description: 'Create and preview CSS box-shadow values.', href: '/tools/box-shadow', icon: '◻', color: 'bg-sky-500/10 text-sky-500', accent: 'from-sky-500 to-sky-400' },
-    { title: 'Color Contrast Checker', description: 'Check WCAG AA/AAA compliance for text colors.', href: '/tools/color-contrast', icon: '◑', color: 'bg-rose-500/10 text-rose-500', accent: 'from-rose-500 to-rose-400' },
-  ],
-  svg: [
-    { title: 'SVG Optimizer', description: 'Minify SVG files. Removes metadata and unused elements.', href: '/tools/svg-optimizer', icon: '◈', color: 'bg-cyan-500/10 text-cyan-500', accent: 'from-cyan-500 to-cyan-400' },
-    { title: 'SVG to PNG', description: 'Export SVG to PNG at any resolution, in browser.', href: '/tools/svg-to-png', icon: '↓', color: 'bg-lime-500/10 text-lime-500', accent: 'from-lime-500 to-lime-400' },
-    { title: 'Favicon Generator', description: 'Create ICO and PNG favicons from any SVG or image.', href: '/tools/favicon-generator', icon: '⬡', color: 'bg-fuchsia-500/10 text-fuchsia-500', accent: 'from-fuchsia-500 to-fuchsia-400' },
-  ],
+  data: byCategory('data'),
+  text: byCategory('text'),
+  css: byCategory('css'),
+  svg: byCategory('svg'),
 };
 
 const stats = [
-  { value: '7', label: 'tools' },
+  { value: String(liveTools.length), label: 'tools' },
   { value: '0', label: 'uploads' },
   { value: '100%', label: 'client-side' },
 ];

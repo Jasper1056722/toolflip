@@ -1,6 +1,17 @@
 ---
 import ToolLayout from '../../layouts/ToolLayout.astro';
 import Base64Tool from '../../components/Base64Tool';
+
+const faqs = [
+  {
+    question: 'What is Base64?',
+    answer: 'Base64 is an encoding scheme that converts binary data into ASCII text, making it safe to transmit over text-based protocols like HTTP and email.',
+  },
+  {
+    question: 'Is Base64 encryption?',
+    answer: 'No. Base64 is encoding, not encryption. It is easily reversible and provides no security. Do not use it to hide sensitive data.',
+  },
+];
 ---
 
 <ToolLayout
@@ -8,18 +19,7 @@ import Base64Tool from '../../components/Base64Tool';
   description="Encode text to Base64 or decode Base64 back to plain text. Live two-way conversion in your browser."
   category="data"
   targetKeyword="base64 encode decode online free"
+  faqs={faqs}
 >
   <Base64Tool client:load />
-
-  <section slot="faq" class="mt-10 border-t border-slate-200 pt-8 space-y-6">
-    <h2 class="text-lg font-semibold text-slate-800">Frequently Asked Questions</h2>
-    <div>
-      <h3 class="font-medium text-slate-700">What is Base64?</h3>
-      <p class="text-sm text-slate-500 mt-1">Base64 is an encoding scheme that converts binary data into ASCII text, making it safe to transmit over text-based protocols like HTTP and email.</p>
-    </div>
-    <div>
-      <h3 class="font-medium text-slate-700">Is Base64 encryption?</h3>
-      <p class="text-sm text-slate-500 mt-1">No. Base64 is encoding, not encryption. It is easily reversible and provides no security. Do not use it to hide sensitive data.</p>
-    </div>
-  </section>
 </ToolLayout>

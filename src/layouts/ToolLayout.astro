@@ -1,19 +1,67 @@
 ---
 import Layout from './Layout.astro';
 import AdSlot from '../components/AdSlot.astro';
+import { liveTools } from '../data/tools';
+
+export interface Faq {
+  question: string;
+  answer: string;
+}
 
 interface Props {
   title: string;
   description: string;
   category: string;
   targetKeyword?: string;
+  faqs?: Faq[];
 }
 
-const { title, description, category, targetKeyword } = Astro.props;
+const { title, description, category, targetKeyword, faqs = [] } = Astro.props;
 const seoDescription = targetKeyword ? `${title} — ${description}` : description;
+
+const site = 'https://toolflip.dev';
+const pageUrl = `${site}${Astro.url.pathname}`;
+
+// Internal links to other tools — helps crawlers discover pages and spreads link equity
+const relatedTools = liveTools.filter(t => t.href !== Astro.url.pathname.replace(/\/$/, ''));
+
+const appSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: title,
+  description: seoDescription,
+  url: pageUrl,
+  applicationCategory: 'DeveloperApplication',
+  operatingSystem: 'Any',
+  browserRequirements: 'Requires JavaScript',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'ToolFlip', item: site },
+    { '@type': 'ListItem', position: 2, name: title, item: pageUrl },
+  ],
+};
+
+const faqSchema = faqs.length > 0 ? {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(f => ({
+    '@type': 'Question',
+    name: f.question,
+    acceptedAnswer: { '@type': 'Answer', text: f.answer },
+  })),
+} : null;
 ---
 
 <Layout title={title} description={seoDescription}>
+
+  <script type="application/ld+json" set:html={JSON.stringify(appSchema)} slot="head" />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} slot="head" />
+  {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />}
 
   <!-- Compact dark header for tool pages -->
   <div class="bg-slate-950 border-b border-slate-800">
@@ -47,9 +95,37 @@ const seoDescription = targetKeyword ? `${title} — ${description}` : descripti
           <AdSlot size="leaderboard" />
         </div>
 
+        {faqs.length > 0 && (
+          <section class="mt-4 border-t border-slate-200 pt-8 space-y-6">
+            <h2 class="text-lg font-semibold text-slate-800">Frequently Asked Questions</h2>
+            {faqs.map(f => (
+              <div>
+                <h3 class="font-medium text-slate-700">{f.question}</h3>
+                <p class="text-sm text-slate-500 mt-1">{f.answer}</p>
+              </div>
+            ))}
+          </section>
+        )}
+
         <section class="mt-4">
           <slot name="faq" />
         </section>
+
+        {relatedTools.length > 0 && (
+          <section class="mt-10 border-t border-slate-200 pt-8">
+            <h2 class="text-lg font-semibold text-slate-800 mb-4">More free tools</h2>
+            <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-2">
+              {relatedTools.map(t => (
+                <li>
+                  <a href={t.href} class="text-sm text-indigo-600 hover:text-indigo-800 hover:underline">
+                    {t.title}
+                  </a>
+                  <span class="text-xs text-slate-400"> — {t.description}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
       </div>
 
       <!-- Sidebar ad -->

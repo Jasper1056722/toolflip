@@ -6,6 +6,7 @@ interface Props {
   icon: string;
   color?: string;
   accent?: string;
+  comingSoon?: boolean;
 }
 
 const {
@@ -15,39 +16,56 @@ const {
   icon,
   color = 'bg-indigo-500/10 text-indigo-500',
   accent = 'from-indigo-500 to-indigo-400',
+  comingSoon = false,
 } = Astro.props;
+
+// Coming-soon cards render as a non-clickable <div> so crawlers never see a dead link
+const Tag = comingSoon ? 'div' : 'a';
 ---
 
-<a
-  href={href}
-  class="group flex flex-col bg-white rounded-xl border border-slate-200 overflow-hidden hover:border-slate-300 hover:shadow-lg hover:shadow-slate-200/70 hover:-translate-y-1 transition-all duration-200"
+<Tag
+  href={comingSoon ? undefined : href}
+  class:list={[
+    'group flex flex-col bg-white rounded-xl border border-slate-200 overflow-hidden',
+    comingSoon
+      ? 'opacity-60 cursor-default'
+      : 'hover:border-slate-300 hover:shadow-lg hover:shadow-slate-200/70 hover:-translate-y-1 transition-all duration-200',
+  ]}
 >
   <!-- Top accent line: faint always, full on hover -->
-  <div class={`h-[3px] w-full bg-gradient-to-r ${accent} opacity-20 group-hover:opacity-100 transition-opacity duration-200`}></div>
+  <div class={`h-[3px] w-full bg-gradient-to-r ${accent} opacity-20 ${comingSoon ? '' : 'group-hover:opacity-100'} transition-opacity duration-200`}></div>
 
   <div class="p-5 flex flex-col flex-1 relative">
     <!-- Subtle background tint on hover -->
-    <div class={`absolute inset-0 bg-gradient-to-br ${accent} opacity-0 group-hover:opacity-[0.03] transition-opacity duration-200 pointer-events-none`}></div>
+    {!comingSoon && (
+      <div class={`absolute inset-0 bg-gradient-to-br ${accent} opacity-0 group-hover:opacity-[0.03] transition-opacity duration-200 pointer-events-none`}></div>
+    )}
 
-    <!-- Icon + arrow -->
+    <!-- Icon + arrow / badge -->
     <div class="flex items-start justify-between mb-4 relative">
       <div class={`w-10 h-10 rounded-lg flex items-center justify-center text-sm font-mono font-bold ${color}`}>
         {icon}
       </div>
-      <svg
-        class="w-4 h-4 text-slate-300 group-hover:text-slate-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200 mt-0.5"
-        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-      >
-        <path d="M7 17L17 7M17 7H7M17 7v10"/>
-      </svg>
+      {comingSoon ? (
+        <span class="text-[10px] font-mono font-semibold uppercase tracking-wide text-slate-400 bg-slate-100 border border-slate-200 rounded-full px-2 py-0.5 mt-0.5">
+          Coming soon
+        </span>
+      ) : (
+        <svg
+          class="w-4 h-4 text-slate-300 group-hover:text-slate-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200 mt-0.5"
+          viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        >
+          <path d="M7 17L17 7M17 7H7M17 7v10"/>
+        </svg>
+      )}
     </div>
 
     <!-- Text -->
     <div class="relative">
-      <h3 class="font-semibold text-slate-900 text-sm mb-1.5 group-hover:text-indigo-700 transition-colors">
+      <h3 class:list={['font-semibold text-slate-900 text-sm mb-1.5', !comingSoon && 'group-hover:text-indigo-700 transition-colors']}>
         {title}
       </h3>
       <p class="text-xs text-slate-500 leading-relaxed">{description}</p>
     </div>
   </div>
-</a>
+</Tag>
